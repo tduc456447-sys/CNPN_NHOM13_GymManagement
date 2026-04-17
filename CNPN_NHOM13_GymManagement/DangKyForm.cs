@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CNPN_NHOM13_GymManagement
 {
-    public partial class Form1 : Form
+    public partial class DangKyForm : Form
     {
-        public Form1()
+        public DangKyForm()
         {
             InitializeComponent();
         }
