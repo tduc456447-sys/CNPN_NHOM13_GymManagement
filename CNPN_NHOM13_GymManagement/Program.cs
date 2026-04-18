@@ -17,7 +17,8 @@ namespace CNPN_NHOM13_GymManagement
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new DangKyForm());
-            Application.Run(new QuanLyTaiKhoanForm());
+            //Application.Run(new QuanLyTaiKhoanForm());
+            Application.Run(new QuanLyPTForm());
         }
     }
 }
