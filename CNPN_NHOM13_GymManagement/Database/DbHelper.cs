@@ -6,7 +6,7 @@ namespace CNPN_NHOM13_GymManagement.Database
 {
     internal class DbHelper
     {
-        private string connectionString = "Server=Quang\\SQLEXPRESS;Database=GymManagement;Trusted_Connection=True;";
+        private string connectionString = "Server=Quang\\SQLEXPRESS;Database=GymManagement;Trusted_Connection=True;integrated security=true";
 
         // Lấy connection
         public SqlConnection GetConnection()

@@ -58,7 +58,16 @@ CREATE TABLE Users (
 
     FOREIGN KEY (LevelId) REFERENCES StaffLevels(LevelId)
 );
+GO
+USE GymManagement;
+GO
+ALTER TABLE Users
+ADD Gender NVARCHAR(10);
+USE GymManagement
+GO
 
+SELECT * 
+FROM sys.tables
 CREATE TABLE PendingUsers (
     Id INT IDENTITY PRIMARY KEY,
     Username NVARCHAR(50),
@@ -66,7 +75,25 @@ CREATE TABLE PendingUsers (
     FullName NVARCHAR(100),
     Status NVARCHAR(20) DEFAULT 'Pending'
 );
+ALTER TABLE PendingUsers
+ADD 
+    Phone NVARCHAR(20),
+    Email NVARCHAR(100),
+    Avatar NVARCHAR(255),
 
+    Role NVARCHAR(20) CHECK (Role IN ('Admin','Staff')),
+    Experience INT DEFAULT 0,
+    LevelId INT,
+
+    Gender NVARCHAR(10);
+ALTER TABLE PendingUsers
+ALTER COLUMN Username NVARCHAR(50) NOT NULL;
+
+ALTER TABLE PendingUsers
+ALTER COLUMN Password NVARCHAR(255) NOT NULL;
+
+ALTER TABLE PendingUsers
+ALTER COLUMN FullName NVARCHAR(100) NOT NULL;
 -- ========================================
 -- WORK SHIFT + ATTENDANCE
 -- ========================================
@@ -495,13 +522,13 @@ LEFT JOIN Attendances a ON u.UserId = a.UserId
 GROUP BY u.FullName, sc.BaseSalaryPerShift, sl.SalaryPercentIncrease;
 --INSERT
 
-INSERT INTO Users (Username, Password, FullName, Phone, Email, Role, Experience, LevelId)
+INSERT INTO Users (Username, Password, FullName, Phone, Email, Role, Experience, LevelId, Gender)
 VALUES
-('admin','123',N'Nguyễn Minh Quân','0901111111','admin@gmail.com','Admin',5,3),
+('admin','123',N'Nguyễn Minh Quân','0901111111','admin@gmail.com','Admin',5,3, 'Nam'),
 
-('staff1','123',N'Trần Văn Hùng','0902222222','hung@gmail.com','Staff',1,1),
-('staff2','123',N'Lê Thị Lan','0903333333','lan@gmail.com','Staff',3,2),
-('staff3','123',N'Phạm Quốc Bảo','0904444444','bao@gmail.com','Staff',6,3);
+('staff1','123',N'Trần Văn Hùng','0902222222','hung@gmail.com','Staff',1,1, 'Nam'),
+('staff2','123',N'Lê Thị Lan','0903333333','lan@gmail.com','Staff',3,2, 'Nữ'),
+('staff3','123',N'Phạm Quốc Bảo','0904444444','bao@gmail.com','Staff',6,3, 'Nam');
 
 INSERT INTO WorkShifts (Name, StartTime, EndTime)
 VALUES
